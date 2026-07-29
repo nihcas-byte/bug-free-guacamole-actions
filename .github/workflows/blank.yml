@@ -1,4 +1,4 @@
-name: Node.js CI
+name: terraform infrastructure on Azure
 
 on:
   push:
@@ -8,25 +8,28 @@ on:
     branches:
       - main
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
-  build-and-test:
+  terraform-workflow:
     runs-on: ubuntu-latest
-
+    env: # Available to all steps in this job
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: npm
+      - name: Installing Terraform
+        uses: hashicorp/setup-terraform@v4
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Initialize Terraform
+        run: terraform init
 
-      - name: Run tests
-        run: npm test
+      - name: Terraform Plan
+        run: terraform plan
+
+      - name: Terraform Apply 
+        if: github.event_name == 'push'  #Only deploys on merge to main!
+        run: terraform apply -auto-approve
