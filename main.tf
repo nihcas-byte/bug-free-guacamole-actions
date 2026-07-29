@@ -19,12 +19,3 @@ resource "azurerm_resource_group" "rg-1" {
   location = "East US"
 }
 
-resource "azurerm_resource_group" "rg-2" {
-  name     = "rg-tf-github-actions-2"
-  location = "East US"
-}
-
-resource "azurerm_resource_group" "rg-3" {
-  name     = "rg-tf-github-actions-3"
-  location = "East US"
-}
