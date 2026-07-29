@@ -5,6 +5,12 @@ terraform{
             version = "4.80.0"
         }
     }
+    backend "azurerm" {
+        resource_group_name  = "logic-app-rg"
+        storage_account_name = "sttfgithubactions01"
+        container_name       = "tfstate"
+        key                  = "dev-gh.terraform.tfstate"
+    }
     required_version = "1.15.8"
 }
 
