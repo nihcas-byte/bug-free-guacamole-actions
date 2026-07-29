@@ -15,7 +15,7 @@ terraform{
 }
 
 resource "azurerm_resource_group" "rg-1" {
-  name     = "rg-tf-github-actions-1"
+  name     = "rg-tf-github-actions-23"
   location = "East US"
 }
 
