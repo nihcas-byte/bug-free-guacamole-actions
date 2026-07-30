@@ -90,7 +90,7 @@ nsgs = {
 # --- Key Vaults --------------------------------------------------------------
 keyvaults = {
   kv1 = {
-    name                        = "kv-infra-dev-001"
+    name                        = "kv-6792-dev-2343"
     location                    = "East US"
     resource_group_name         = "rg-security-eastus"
     sku_name                    = "standard"
