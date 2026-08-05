@@ -101,4 +101,17 @@ keyvaults = {
       environment = "dev"
     }
   }
+
+  kv2 = {
+    name                        = "kv-6792-dev-2356"
+    location                    = "East US"
+    resource_group_name         = "rg-security-eastus"
+    sku_name                    = "standard"
+    purge_protection_enabled    = false
+    soft_delete_retention_days  = 7
+    enabled_for_disk_encryption = true
+    tags = {
+      environment = "dev"
+    }
+  }
 }
